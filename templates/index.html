@@ -17,7 +17,7 @@
 <h1>My Library</h1>
     <div class="row home-row">
         {% if books == []: %}
-        <p>Library is empty.</p>
+        <p class="status-msg">Library is empty.</p>
         {% endif %}
     <ul style="list-style: none;">
         {% for book in books %}

@@ -1,13 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
+from config import Config
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY') or 'try-it-i-guess'
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL') or \
-                          'sqlite:///' + os.path.join(basedir, 'app.db')
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config.from_object(Config)
 db = SQLAlchemy(app)
 
 
