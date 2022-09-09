@@ -26,7 +26,8 @@ db.create_all()
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    books = db.session.query(Book).all()
+    return render_template("index.html", books=books)
 
 
 @app.route("/add", methods=["GET", "POST"])
@@ -41,6 +42,17 @@ def add():
 
         return redirect(url_for('home'))
     return render_template("add.html")
+
+
+
+
+@app.route("/delete")
+def delete():
+    book_id = request.args.get('id')
+    book_to_delete = Book.query.get(book_id)
+    db.session.delete(book_to_delete)
+    db.session.commit()
+    return redirect(url_for('home'))
 
 
 if __name__ == "__main__":
