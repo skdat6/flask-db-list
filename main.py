@@ -15,10 +15,5 @@ def home():
     return render_template("index.html")
 
 
-@app.route('/add')
-def add():
-    return redirect(url_for('home'))
-
-
 if __name__ == "__main__":
     app.run()
