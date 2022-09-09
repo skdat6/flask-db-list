@@ -8,14 +8,14 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 
 
-class Book(db.Model):
+class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80), unique=True, nullable=False)
-    author = db.Column(db.String(120), unique=False, nullable=False)
-    rating = db.Column(db.Float, unique=False, nullable=False)
+    item = db.Column(db.String(80), unique=True, nullable=False)
+    category = db.Column(db.String(120), unique=False, nullable=False)
+    price = db.Column(db.Float, unique=False, nullable=False)
 
     def __repr__(self):
-        return f'<Book {self.title}>'
+        return f'<item {self.title}>'
 
 
 db.create_all()
@@ -23,18 +23,18 @@ db.create_all()
 
 @app.route('/')
 def home():
-    books = db.session.query(Book).all()
-    return render_template("index.html", books=books)
+    items = db.session.query(Item).all()
+    return render_template("index.html", items=items)
 
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "POST":
-        new_book = Book(
-            title=request.form["title"],
-            author=request.form["author"],
-            rating=request.form["rating"])
-        db.session.add(new_book)
+        new_item = Item(
+            item=request.form["item"],
+            category=request.form["category"],
+            price=request.form["price"])
+        db.session.add(new_item)
         db.session.commit()
 
         return redirect(url_for('home'))
@@ -45,22 +45,22 @@ def add():
 def edit():
     if request.method == "POST":
 
-        book_id = request.form["id"]
-        book_to_update = Book.query.get(book_id)
-        book_to_update.rating = request.form["rating"]
+        item_id = request.form["id"]
+        item_to_update = Item.query.get(item_id)
+        item_to_update.price = request.form["price"]
         db.session.commit()
         return redirect(url_for('home'))
-    book_id = request.args.get('id')
-    book_selected = Book.query.get(book_id)
-    return render_template("edit_rating.html", book=book_selected)
+    item_id = request.args.get('id')
+    item_selected = Item.query.get(item_id)
+    return render_template("edit_rating.html", item=item_selected)
 
 
 
 @app.route("/delete")
 def delete():
-    book_id = request.args.get('id')
-    book_to_delete = Book.query.get(book_id)
-    db.session.delete(book_to_delete)
+    item_id = request.args.get('id')
+    item_to_delete = Item.query.get(item_id)
+    db.session.delete(item_to_delete)
     db.session.commit()
     return redirect(url_for('home'))
 
