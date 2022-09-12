@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
-from config import Config
+from app.config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
