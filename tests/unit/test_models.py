@@ -8,3 +8,4 @@ def test_new_item():
     assert item.category == 'Dairy'
     assert item.price == 10
 
+

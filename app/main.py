@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, current_app
 from flask_sqlalchemy import SQLAlchemy
 import os
 from app.config import Config
