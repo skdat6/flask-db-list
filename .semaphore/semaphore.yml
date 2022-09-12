@@ -13,6 +13,7 @@ blocks:
             - sem-version python 3.9
             - checkout
             - python -m pip install --upgrade pip
+            - COPY requirements.txt /tmp/requirements.txt
             - pip install -r requirements.txt
             - pip install flake8
             - 'flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics'
