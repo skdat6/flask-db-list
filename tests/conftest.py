@@ -10,11 +10,7 @@ def app():
         "TESTING": True,
     })
 
-    # other setup can go here
-
     yield app
-
-    # clean up / reset resources here
 
 
 @pytest.fixture()
@@ -25,3 +21,9 @@ def client(app):
 @pytest.fixture()
 def runner(app):
     return app.test_cli_runner()
+
+
+@pytest.fixture()
+def main_url():
+    url = "http://127.0.0.1:5000"
+    return url
