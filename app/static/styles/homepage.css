@@ -1,5 +1,6 @@
 body {
 padding-left: 1%;
+font-family: "Roboto"
 }
 
 .status-msg {
@@ -25,4 +26,9 @@ background-color: green;
 .btn-delete {
 background-color: red;
 margin-right: 5px;
+}
+
+.price-info {
+color:teal;
+font-weight: bold;
 }

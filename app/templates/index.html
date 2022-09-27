@@ -36,7 +36,13 @@
                             <a class="btn-edit btn-primary btn-sm rounded-1 bi bi-pencil-square float-right" title="Edit" href="{{ url_for('edit', id=item.id) }}"></a>
 
                         </div>
+
                         {% endfor %}
+
+                        <div class="price-info mt-5 d-flex justify-content-center">
+                            Total to spend: {{prices}} EUR
+                        </div>
+
                     </div>
                        <a class="btn btn-info" href="{{ url_for('add') }}">Add New Item</a>
                 </div>

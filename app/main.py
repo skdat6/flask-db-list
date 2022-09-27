@@ -23,9 +23,11 @@ db.create_all()
 
 @app.route('/')
 def home():
+    prices = 0
     items = db.session.query(Item).all()
-
-    return render_template("index.html", items=items)
+    for item in items:
+        prices += item.price
+    return render_template("index.html", items=items, prices=prices)
 
 
 @app.route("/add", methods=["GET", "POST"])
