@@ -4,34 +4,64 @@
     <meta charset="UTF-8">
     <title>Shopping List</title>
 
-    <link rel="stylesheet" href="./static/styles/homepage.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="/static/styles/homepage.css">
 
 </head>
 <body>
 
-<h1>My Shopping List</h1>
-    <div class="row home-row">
-        {% if items == []: %}
-        <p class="status-msg">Shopping list is empty.</p>
-        {% endif %}
-    <ul style="list-style: none;">
-        {% for item in items %}
-        <li class="item-list">
+  <div class="row">
+            <div class="col-lg-5 mx-auto">
 
-            {{item.item}} - {{item.category}} - {{item.price}}
+                <!-- CHECKBOX LIST -->
+                <div class="card rounded border-0 shadow-sm position-relative">
+                    <div class="card-body p-5">
+                        <div class="d-flex align-items-center mb-4 pb-4 border-bottom"><i class="far fa-calendar-alt fa-3x"></i>
+                            <div class="ms-3">
+                                <h4 class="text-uppercase fw-weight-bold mb-0">Shopping List</h4>
+                            </div>
+                        </div>
+                        {% if items == []: %}
+                        <p class="status-msg">Shopping List is empty. </p>
+                        {% endif %}
+                        {% for item in items %}
+                        <div class="form-check mb-3">
+                            <input class="form-check-input box" type="checkbox" >
+                            <label class="form-check-label" ><span class="fst-italic pl-1">{{item.item}} - {{item.category}} - {{item.price}} EUR</span></label>
+                            <a class="btn-delete btn-primary btn-sm rounded-1 bi bi-journal-x float-right" title="Delete" href="{{ url_for('delete', id=item.id) }}"></a>
+                            <a class="btn-edit btn-primary btn-sm rounded-1 bi bi-pencil-square float-right" title="Edit" href="{{ url_for('edit', id=item.id) }}"></a>
 
-            <a class="btn btn-info" href="{{ url_for('edit', id=item.id) }}">Edit Price</a>
-            <a class="btn btn-danger" href="{{ url_for('delete', id=item.id) }}">Delete</a>
-        </li>
-        {% endfor %}
-    </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                       <a class="btn btn-info" href="{{ url_for('add') }}">Add New Item</a>
+                </div>
+            </div>
         </div>
-<a class="btn btn-info" href="{{ url_for('add') }}">Add New Item</a>
+
+
+<!--<h1>My Shopping List</h1>-->
+<!--    <div class="row home-row">-->
+<!--        {% if items == []: %}-->
+<!--        <p class="status-msg">Shopping list is empty.</p>-->
+<!--        {% endif %}-->
+<!--    <ul style="list-style: none;">-->
+<!--        {% for item in items %}-->
+<!--        <li class="item-list">-->
+
+<!--            {{item.item}} - {{item.category}} - {{item.price}}-->
+
+<!--            <a class="btn btn-info" href="{{ url_for('edit', id=item.id) }}">Edit Price</a>-->
+<!--            <a class="btn btn-danger" href="{{ url_for('delete', id=item.id) }}">Delete</a>-->
+<!--        </li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--        </div>-->
+
 
 </body>
 </html>

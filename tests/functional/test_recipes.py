@@ -18,3 +18,4 @@ def test_request_add_new(client):
     response = client.get("/")
     assert b"Add New Item" in response.data
 
+

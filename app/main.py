@@ -15,7 +15,7 @@ class Item(db.Model):
     price = db.Column(db.Float, unique=False, nullable=False)
 
     def __repr__(self):
-        return f'<item {self.title}>'
+        return f'<item {self.item}>'
 
 
 db.create_all()
@@ -33,7 +33,7 @@ def add():
     if request.method == "POST":
         new_item = Item(
             item=request.form["item"],
-            category=request.form["category"],
+            category=request.values["category"],
             price=request.form["price"])
         db.session.add(new_item)
         db.session.commit()

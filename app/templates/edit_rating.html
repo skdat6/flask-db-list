@@ -7,8 +7,8 @@
 <body>
 
      <form action="{{ url_for('edit') }}" method="POST">
-        <p>Item Name: {{item.title}}</p>
-        <p>Current Price {{item.rating}}</p>
+        <p>Item Name: {{item.item}}</p>
+        <p>Current Price {{item.price}}</p>
          <input hidden="hidden" name="id" value="{{item.id}}">
         <input name="price" type="number" min="0" step="0.1" placeholder="New Price">
         <button type="submit">Change Price</button>
