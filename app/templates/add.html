@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +33,7 @@
                                 <li><label>Item Name</label>
                                 <li><input name="item" type="text"></li>
 
-                                <li><select class="form-select form-select-sm" name="category" aria-label=".form-select-sm example">
+                                <li><select class="category-select form-select form-select-sm" name="category">
                                   <option hidden>Category</option>
                                   <option value="Meat">Meat</option>
                                   <option value="Veggies">Veggies</option>
@@ -56,3 +59,5 @@
 
 </body>
 </html>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+
+.register_wrapper {
+    border: 1px solid #e4e4e4;
+    width: 100%;
+    background: #fff;
+    padding-top: 50px;
+    margin-top: 50px;
+    }
+
+.register_wrapper button.btn {
+    color: #fff;
+    width: 100%;
+    height: 50px;
+    padding: 6px 25px;
+    line-height: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background: #008080;
+    font-size: 16px;
+    border: 1px solid #4385f5;
+}
+
+
+.register_wrapper a i {
+    float: right;
+    margin: 0;
+    line-height: 35px;
+}
+
+
+.register_wrapper h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #111;
+    line-height: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+}
+
+
+form {
+    margin-bottom: 15px;
+}
+
+.register_wrapper .form-control {
+    height: 53px;
+    padding: 15px 20px;
+    font-size: 14px;
+    line-height: 24px;
+    border: 1px solid #fafafa;
+    border-radius: 3px;
+    box-shadow: none;
+    font-family: 'Roboto';
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    background-color: #fafafa;
+}
+
+.register_wrapper .form-control:focus {
+    color: #999;
+    background-color: fafafa;
+    border: 1px solid #4285f4 !important;
+}
+
+
+.register_btn_wrapper {
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+
+
+.register_message p {
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+}
+
+p {
+    color: #999999;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.register_wrapper button.register_btn:hover {
+    background-color: #006b80;
+    border-color: #006b80;
+}
+
+.register_wrapper button.btn:hover {
+    background-color: #006b80;
+    border-color: #006b80;
+}
