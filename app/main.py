@@ -40,6 +40,8 @@ db.create_all()
 
 @app.route('/')
 def home():
+    if current_user.is_authenticated:
+        return redirect(url_for('shopping_list'))
     return render_template("home.html", logged_in=current_user.is_authenticated)
 
 
