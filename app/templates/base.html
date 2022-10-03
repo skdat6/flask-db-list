@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flask Authentication</title>
+    <title>Shopping List</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,18 +20,24 @@
   <a class="navbar-brand" href="/"></a>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto">
+          {% if not current_user.is_authenticated: %}
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('home') }}">Home</a>
       </li>
+          {% endif %}
+        {% if not logged_in %}
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('login') }}">Login</a>
       </li>
         <li class="nav-item">
         <a class="nav-link" href="{{ url_for('register') }}">Register</a>
       </li>
+        {% endif %}
+        {% if current_user.is_authenticated: %}
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
       </li>
+        {% endif %}
     </ul>
   </div>
 </nav>

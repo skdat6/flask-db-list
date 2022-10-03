@@ -40,15 +40,17 @@ db.create_all()
 
 @app.route('/')
 def home():
-    return render_template("home.html")
+    return render_template("home.html", logged_in=current_user.is_authenticated)
+
 
 @app.route('/shopping_list')
+@login_required
 def shopping_list():
     prices = 0
-    items = db.session.query(Item).all()
+    items = Item.query.filter_by(user_id=current_user.id).all()
     for item in items:
         prices += item.price
-    return render_template("index.html", items=items, prices=prices)
+    return render_template("index.html", items=items, prices=prices, logged_in=True)
 
 
 @app.route("/add", methods=["GET", "POST"])
@@ -58,8 +60,7 @@ def add():
             item=request.form["item"],
             category=request.values["category"],
             price=request.form["price"],
-            user_id=current_user.id
-        )
+            user_id=current_user.id)
         db.session.add(new_item)
         db.session.commit()
 
@@ -117,9 +118,9 @@ def register():
         # Log in and authenticate user after adding details to database.
         login_user(new_user)
 
-        return redirect(url_for("shopping_list", name=new_user.name))
+        return redirect(url_for("shopping_list", name=new_user.name,  logged_in=current_user.is_authenticated))
 
-    return render_template("register.html", logged_in=current_user.is_authenticated)
+    return render_template("register.html")
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -143,13 +144,13 @@ def login():
         # Email exists and password correct
         else:
             login_user(user)
-            return redirect(url_for('shopping_list'))
+            return redirect(url_for('shopping_list', logged_in=current_user.is_authenticated))
 
-    return render_template("login.html", logged_in=current_user.is_authenticated)
+    return render_template("login.html")
 
 @app.route("/logout")
 def logout():
-
+    logout_user()
     return redirect(url_for('home'))
 
 if __name__ == "__main__":
