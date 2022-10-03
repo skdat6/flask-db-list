@@ -22,12 +22,12 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
-    items = db.relationship('Item', backref='item_user', lazy='dynamic')
+    items = db.relationship('Item', backref='user', lazy='dynamic')
 
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    item = db.Column(db.String(80), unique=True, nullable=False)
+    item = db.Column(db.String(80), unique=False, nullable=False)
     category = db.Column(db.String(120), unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -57,11 +57,13 @@ def add():
         new_item = Item(
             item=request.form["item"],
             category=request.values["category"],
-            price=request.form["price"])
+            price=request.form["price"],
+            user_id=current_user.id
+        )
         db.session.add(new_item)
         db.session.commit()
 
-        return redirect(url_for('home'))
+        return redirect(url_for('shopping_list'))
 
     return render_template("add.html")
 
@@ -73,7 +75,7 @@ def edit():
         item_to_update = Item.query.get(item_id)
         item_to_update.price = request.form["price"]
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('shopping_list'))
 
     item_id = request.args.get('id')
     item_selected = Item.query.get(item_id)

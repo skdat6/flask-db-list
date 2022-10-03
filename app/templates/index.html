@@ -25,19 +25,21 @@
                     <div class="card-body p-5">
                         <div class="d-flex align-items-center mb-4 pb-4 border-bottom"><i class="far fa-calendar-alt fa-3x"></i>
                             <div class="ms-3">
-                                <h4 class="text-uppercase fw-weight-bold mb-0">{{name}}'s Shopping List</h4>
+                                <h4 class="text-uppercase fw-weight-bold mb-0">{{current_user.name}}'s Shopping List</h4>
                             </div>
                         </div>
                         {% if items == []: %}
                         <p class="status-msg">Shopping List is empty. </p>
                         {% endif %}
                         {% for item in items %}
+
                         <div class="form-check mb-3">
                             <input class="form-check-input box" type="checkbox" >
+                            {% if current_user.id == item.user_id %}
                             <label class="form-check-label" ><span class="fst-italic pl-1">{{item.item}} - {{item.category}} - {{item.price}} EUR</span></label>
                             <a class="btn-delete btn-primary btn-sm rounded-1 bi bi-journal-x float-right" title="Delete" href="{{ url_for('delete', id=item.id) }}"></a>
                             <a class="btn-edit btn-primary btn-sm rounded-1 bi bi-pencil-square float-right" title="Edit" href="{{ url_for('edit', id=item.id) }}"></a>
-
+                            {% endif %}
                         </div>
 
                         {% endfor %}
