@@ -31,7 +31,7 @@
                                 <li><p>Item Name: {{item.item}}</p></li>
                                 <li><p>Current Price {{item.price}} EUR</p></li>
                              <input hidden="hidden" name="id" value="{{item.id}}">
-                                <li><input name="price" type="number" min="0" step="0.1" placeholder="New Price"></li>
+                                <li><input name="price" type="number" min="0" required="required" step="0.1" placeholder="New Price"></li>
                                 <li><button class="btn btn-secondary" type="submit">Change Price</button></li>
                             </ul>
                         </form>
